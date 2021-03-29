@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Password Generator</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/css/agency.css">
+  <link rel="stylesheet" href="/css/agency.min.css">
+  <!-- endinject -->
+
+  <!-- inject:js -->
+  <script src="/js/agency.js"></script>
+  <script src="/js/agency.min.js"></script>
+  <script src="/js/customfunctions.js"></script>
+  <script src="/js/jqBootstrapValidation.js"></script>
+  <!-- endinject -->
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+        
+        <% for(i=0; i<nav.length;  i++) {%>
+            <li>
+                <a class="nav-link js-scroll-trigger" href="<%=nav[i].Link %>"> <%=nav[i].Text %> </a>
+            </li>
+        <% } %>
+        
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="conbidhead">
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in">I need a life.....</div>
+        <div class="intro-heading text-uppercase">But instead I'll choose you a password</div>
+      </div>
+    </div>
+  </header>  
+
+  <!-- Events -->
+  <section class="page-section" id="events">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <label for="lengthmin">Input password min length</label>
+          <input type="number" id="lengthmin" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <label for="lengthmax">Input password max length</label>
+          <input type="number" id="lengthmax" required>
+        </div>
+      </div>
+      <!-- Give a specific password level that result needs to match -->
+<!--         <div class="row">
+          <div class="col-lg-12">
+          <label for="length">IBMi password level (optional)</label>
+          <input type="number" id="IBMPwdLvl" max="3">
+        </div>
+      </div> -->
+      <h3 class="section-heading text-muted">Alpha characters</h3>
+      <div class="row">
+        <div class="col-lg-12">
+          <label for="Upperchar">Upper case?</label>
+          <input type="radio" id="Upperchar" name="casechar" checked="true" value="upper" onclick="checkstart()">
+          <label for="Lowerchar">Lower case?</label>
+          <input type="radio" id="Lowerchar" name="casechar" value="lower" onclick="checkstart()">
+          <label for="Mixedchar">Mixed case?</label>
+          <input type="radio" id="Mixedchar" name="casechar" value="mixed" onclick="checkstart()">
+          <label for="noletters">No letters?</label>
+          <input type="radio" id="noletters" name="casechar" value="none" onclick="checkstart()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- Ensure first digit is alpha -->
+          <label for="firstchar">Start with Letter?</label>
+          <input type="checkbox" id="firstchar">
+        </div>
+      </div>
+      <h3 class="section-heading text-muted">Numeric characters</h3>
+      <div class="row">
+        <div class="col-lg-12">
+          <label for="mixed">Allow Numeric?</label>
+          <input type="checkbox" id="numbers">
+          <!-- QPWDLMTAJC - Limit adjacent digits in password -->
+          <label for="LimitAjc">Limit adjacent digits?</label>
+          <input type="checkbox" id="LimitAjc" onclick="checknum()">
+          <!-- QPWDDRQDDGT - Must have at least 1 digit -->
+          <label for="MandDig">Must include digit?</label>
+          <input type="checkbox" id="MandDig" onclick="checknum()">
+        </div>
+      </div>
+      <h3 class="section-heading text-muted">Special characters</h3>
+      <div class="row">
+        <div class="col-lg-12">
+          <label for="IBMspecial">IBMi special characters?</label>
+          <input type="radio" id="IBMspecial" name="special" value="IBMi">
+          <label for="Genspecial">general special characters?</label>
+          <input type="radio" id="Genspecial" name="special" value="general">
+          <label for="Nospecial">none</label>
+          <input type="radio" id="Nospecial" name="special" value="none">
+        </div>
+      </div>
+      <h3 class="section-heading text-muted">Other requirements</h3>
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- QPWDLMTREP (pt1) - Limit repeat characters -->
+          <label for="LimitAjcC">Limit adjacent characters?</label>
+          <input type="checkbox" id="LimitAjcC">
+          <!-- QPWDLMTREP (pt2) - only use each character once -->
+          <label for="NoRep">No repeat characters?</label>
+          <input type="checkbox" id="NoRep">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- QPWDLMTCHR - allow up to 10 restricted characters -->
+          <label for="restricted">Restricted Characters? (Max 10)</label>
+          <input type="text" id="restricted" maxlength="10">
+          <button onclick="genpass()">submit</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+        <textarea rows="2" id="results" readonly style="border: none"></textarea>
+        </div>
+      </div>
+    </div>
+  </section> 
+
+  <!-- Footer -->
+  
+   <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <span class="copyright">Copyright &copy; Your Website 2020</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://www.twitter.com/mniservices" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/MNISLtd/" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="http://www.linkedin.com/company/mni-services" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/dist/jquery.min.js"></script>
+  <script src="/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="/js/agency.min.js"></script>
+  <script src="/js/manual/pass-process.js"></script>
+
+</body>
+
+</html>

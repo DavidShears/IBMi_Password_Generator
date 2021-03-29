@@ -1,0 +1,25 @@
+{
+  "name": "ibmi-pass-gen",
+  "version": "1.0.0",
+  "description": "IBMi \"random\" password generator",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidShears/IBMi_Password_Generator.git"
+  },
+  "author": "David Shears",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidShears/IBMi_Password_Generator/issues"
+  },
+  "homepage": "https://github.com/DavidShears/IBMi_Password_Generator#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "express": "^4.17.1",
+    "itoolkit": "^1.0.0",
+    "jquery": "^3.6.0"
+  }
+}
