@@ -18,6 +18,7 @@
   "homepage": "https://github.com/DavidShears/IBMi_Password_Generator#readme",
   "dependencies": {
     "bootstrap": "^4.6.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "itoolkit": "^1.0.0",
     "jquery": "^3.6.0"

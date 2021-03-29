@@ -5,6 +5,7 @@ var app = express();
 var port = 3005;
 //setup for https usage
 var https = require('https')
+var fs = require('fs')
 
 // Try defining nav as a constant here rather than on each route
 app.locals.navlinks = [{Link : '/passgen', Text: 'Password Generator'}]
@@ -22,24 +23,6 @@ const serverOptions = {
 app.use(express.static('public'));
 app.use(express.static('node_modules/bootstrap'));
 app.use(express.static('node_modules/jquery'));
-// Cookie & json parsing for logon 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-//Setup session information for signon page
-app.use(
-    session({
-        cookieName: 'ibmisession',
-        secret: 'dxsMNISLtd',
-        duration: 4 * 60 * 60 * 1000,
-        activeDuration: 1000 * 60 * 5,
-        httpOnly: true,
-        secure: true,
-        ephemeral: true
-    })
-)
-
 
 app.set('views','./src/views');
 app.set('view engine', 'ejs');
