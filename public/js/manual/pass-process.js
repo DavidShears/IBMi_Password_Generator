@@ -43,7 +43,7 @@ function genpass(){
         PassMaxLength = RandomMaxLength;
     }
 
-    // If mandatory digit selected - pick a place that it can go if we don't roll another
+    // If mandatory digit selected - pick a place that it can go (if we don't roll another)
     // firstchar is not ticked - means we can put the digit in position 1 if needed
     if (document.getElementById("MandDig").checked == true && 
     document.getElementById("firstchar").checked != true) {
@@ -118,7 +118,7 @@ function genpass(){
             picked = true;
         }
 
-        // Otherwise return wotever digit
+        // Otherwise return whatever digit
         if (digit == "" && picked == false) {
                 digit = Math.floor(Math.random() * (MaxChar - 1 + 1) );
         }

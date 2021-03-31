@@ -17,7 +17,6 @@ const serverOptions = {
 
 //Setup static directory to find resources
 app.use(express.static('public'));
-app.use(express.static('node_modules/bootstrap'));
 app.use(express.static('node_modules/jquery'));
 
 app.set('views','./src/views');
