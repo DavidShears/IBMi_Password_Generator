@@ -6,9 +6,6 @@ var port = 3005;
 var https = require('https')
 var fs = require('fs')
 
-// Try defining nav as a constant here rather than on each route
-app.locals.navlinks = [{Link : '/passgen', Text: 'Password Generator'}]
-
 //Define routers for different sub-domains
 var Passwordrouter = require('./src/routes/passgen');
 
