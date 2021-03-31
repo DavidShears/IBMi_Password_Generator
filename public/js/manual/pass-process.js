@@ -56,7 +56,7 @@ function genpass(){
         do {
             NumbChar = Math.floor((Math.random() * PassMaxLength) + 1);
         }
-        while (NumbChar != 1);
+        while (NumbChar == 1);
     }
 
     // Pick a character
