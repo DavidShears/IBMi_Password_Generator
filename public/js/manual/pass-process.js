@@ -321,6 +321,7 @@ function checkstart(){
     }
 }
 
+// Slightly more secure than using math.random() - see README.md for full details
 function getRandom(len,adj) {
     result = Math.floor((window.crypto.getRandomValues(new Uint32Array(1))[0] / 2**32) * len) + adj
     return(result);
