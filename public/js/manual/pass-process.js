@@ -37,7 +37,8 @@ function genpass(){
     // Generate random number between Max and Min
     if (PassMinLength != PassMaxLength) {
         do {
-            RandomMaxLength = Math.floor((Math.random() * PassMaxLength) + 1 );
+            RandomMaxLength = getRandom(PassMaxLength,1);
+            /* RandomMaxLength = Math.floor((Math.random() * PassMaxLength) + 1 ); */
         }
         while (RandomMaxLength < PassMinLength);
         PassMaxLength = RandomMaxLength;
@@ -47,14 +48,16 @@ function genpass(){
     // firstchar is not ticked - means we can put the digit in position 1 if needed
     if (document.getElementById("MandDig").checked == true && 
     document.getElementById("firstchar").checked != true) {
-        NumbChar = Math.floor((Math.random() * PassMaxLength) + 1); 
+        NumbChar = getRandom(PassMaxLength,1);
+        /* NumbChar = Math.floor((Math.random() * PassMaxLength) + 1);  */
     }
 
     // firstchar is ticked - means we can't put the digit in position 1
     if (document.getElementById("MandDig").checked == true && 
     document.getElementById("firstchar").checked == true) {
         do {
-            NumbChar = Math.floor((Math.random() * PassMaxLength) + 1);
+            NumbChar = getRandom(PassMaxLength,1);
+        /* NumbChar = Math.floor((Math.random() * PassMaxLength) + 1);  */
         }
         while (NumbChar == 1);
     }
@@ -70,7 +73,8 @@ function genpass(){
         if (document.getElementById("firstchar").checked == true && Counter == 1)
         { 
             do {
-                digit = Math.floor(Math.random() * (MaxChar - 1 + 1) );
+                digit = getRandom(MaxChar - 1,1);
+                /* digit = Math.floor(Math.random() * (MaxChar - 1 + 1) ); */
                 // Handle special characters that could cause problems
                singlechar = parsechar(validchars[digit]);
             }
@@ -83,7 +87,8 @@ function genpass(){
         if ((gotnumb == false && getnumb == true) && 
         (numbercharacters.search(singlechar) == -1 || digit == "")) {
             do {
-                digit = Math.floor(Math.random() * (MaxChar - 1 + 1) );
+                digit = getRandom(MaxChar - 1,1);
+                /* digit = Math.floor(Math.random() * (MaxChar - 1 + 1) ); */
                 // Handle special characters that could cause problems
                 singlechar = parsechar(validchars[digit]);
             }
@@ -96,7 +101,8 @@ function genpass(){
         && numbercharacters.search(singlechar) != -1) )
         {
             do {
-                digit = Math.floor(Math.random() * (MaxChar - 1 + 1) );
+                digit = getRandom(MaxChar - 1,1);
+                /* digit = Math.floor(Math.random() * (MaxChar - 1 + 1) ); */
                 // Handle special characters that could cause problems
                 singlechar = parsechar(validchars[digit]);
             }
@@ -110,7 +116,8 @@ function genpass(){
         && document.getElementById("LimitAjcC").checked == true && prevchar != "" )
         {
             do {
-                digit = Math.floor(Math.random() * (MaxChar - 1 + 1) );
+                digit = getRandom(MaxChar - 1,1);
+                /* digit = Math.floor(Math.random() * (MaxChar - 1 + 1) ); */
                 // Handle special characters that could cause problems
                 singlechar = parsechar(validchars[digit]);
             }
@@ -120,7 +127,8 @@ function genpass(){
 
         // Otherwise return whatever digit
         if (digit == "" && picked == false) {
-                digit = Math.floor(Math.random() * (MaxChar - 1 + 1) );
+            digit = getRandom(MaxChar - 1,1);
+                /* digit = Math.floor(Math.random() * (MaxChar - 1 + 1) ); */
         }
         return callback(digit)
     }
@@ -311,4 +319,9 @@ function checkstart(){
     else {
         document.getElementById("firstchar").disabled = false;
     }
+}
+
+function getRandom(len,adj) {
+    result = Math.floor((window.crypto.getRandomValues(new Uint32Array(1))[0] / 2**32) * len) + adj
+    return(result);
 }

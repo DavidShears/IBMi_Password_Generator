@@ -1,8 +1,12 @@
 # IBMi_Password_Generator
 Code for generating a "random" IBMi Password. Originally a function mixed in with a load of others in one of my sandpits, this repository strips it out to standalone.
 
-**Important note:** we're using math.random() to generate a lot of the random numbers.
-Technically speaking this isn't a cryptographically secure method, but it does the job for demo/personal use.
-See more details here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+**Important Note:** Two versions of the logic are included in pass-process.js, using math.random() and crypto.getRandomValues()
+
+The script was originally written using math.random() however this isn't a secure method and should only be for demo/personal use. See more details here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+As of Feb 2023 the above logic was commented out and replaced with use of crypto.getRandomValues() which is a more secure approach explained here: https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
+
+Original math.random() lines are commented out but can be re-introduced if a problem is identified. Otherwise getRandom function should be used.
 
 Once running the screen will be available on https://youripaddress:3005/passgen
